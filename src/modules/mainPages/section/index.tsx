@@ -14,6 +14,7 @@ const Section: React.FC = () => {
     testimonial: [],
     services: [],
     banner: null,
+    contact: null,
   };
 
   return (

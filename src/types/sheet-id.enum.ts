@@ -3,4 +3,5 @@ export enum SheetId {
     TESTIMONIAL = 'testimonial',
     SERVICES = 'services',
     BANNER = 'banner',
+    CONTACT = 'contact'
 }

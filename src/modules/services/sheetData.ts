@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getPortfolio, getTestimonial, getServices, getBanner } from './readSheet';
+import { getPortfolio, getTestimonial, getServices, getBanner, getContact } from './readSheet';
 import { ISheetData } from '../../types/sheetData.model';
 
 export const useSheetData = () => {
@@ -8,6 +8,7 @@ export const useSheetData = () => {
     testimonial: [],
     services: [],
     banner: null,
+    contact: null,
   });
   const [loading, setLoading] = useState(true);
 
@@ -15,16 +16,17 @@ export const useSheetData = () => {
     const fetchAll = async () => {
       setLoading(true);
       try {
-        const [portfolio, testimonial, services, banner] = await Promise.all([
+        const [portfolio, testimonial, services, banner, contact] = await Promise.all([
           getPortfolio(),
           getTestimonial(),
           getServices(),
           getBanner(),
+          getContact(),
         ]);
-        setData({ portfolio, testimonial, services, banner });
+        setData({ portfolio, testimonial, services, banner, contact });
       } catch (error) {
         // handle error as needed
-        setData({ portfolio: [], testimonial: [], services: [], banner: null });
+        setData({ portfolio: [], testimonial: [], services: [], banner: null, contact: null });
       } finally {
         setLoading(false);
       }

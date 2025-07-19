@@ -1,51 +1,35 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Footer } from '../modules/mainPages/footer';
 import { Topbar } from '../modules/mainPages/toolbar';
 
-interface Props {
-  window?: () => Window;
-  children?: React.ReactElement<{ elevation?: number }>;
-}
+export default function MainLayout() {
+  const [hasScrolled, setHasScrolled] = useState(false);
 
-function ElevationScroll(props: Props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined,
-  });
+  useEffect(() => {
+    const onScroll = () => setHasScrolled(window.scrollY > 0);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  return children
-    ? React.cloneElement(children, {
-      elevation: trigger ? 4 : 0,
-    })
-    : null;
-}
-
-export default function MainLayout(props: Props) {
   return (
-    <Box>
-      <CssBaseline />
-      <ElevationScroll {...props}>
-        <AppBar sx={{
-          backgroundColor: 'var(--neutral-white)',
-          color: 'var(--primary-main)'
-        }}>
-          <Topbar />
-        </AppBar>
-      </ElevationScroll>
-      <Toolbar />
-      <Container sx={{ flex: 1 }}>
+    <div className="flex flex-col min-h-screen text-primary-main">
+      {/* Topbar with dynamic shadow on scroll */}
+      <header
+        className={`sticky top-0 z-50 bg-black py-2 transition-shadow ${
+          hasScrolled ? 'shadow-[0_4px_12px_0_rgba(255,255,255,0.15)]' : ''
+        }`}
+      >
+        <Topbar />
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 px-4 sm:px-8 py-6">
         <Outlet />
-      </Container>
+      </main>
+
+      {/* Footer */}
       <Footer />
-    </Box>
+    </div>
   );
 }

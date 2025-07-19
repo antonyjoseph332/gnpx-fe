@@ -1,22 +1,16 @@
 import { FC } from "react";
-import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Container } from '@mui/material';
-import { Toolbar } from '@mui/material';
+import { ArrowRight } from "lucide-react"; // optional icon replacement
 
 export const Topbar: FC = () => {
-    return (
-        <Toolbar>
-            <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Typography variant="h6" component="div">
-                    GNPX
-                </Typography>
-                <Button variant="contained" >
-                    Let's connect
-                    <ArrowForwardIcon />
-                </Button>
-            </Container>
-        </Toolbar>
-    );
-}
+  return (
+    <div className="topbar py-2 px-5">
+      <div className="container mx-auto flex items-center justify-between">
+        <h1 className="text-xl font-semibold">GNPX</h1>
+        <button className="btn-primary flex items-center gap-2">
+          Let's connect
+          <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+};

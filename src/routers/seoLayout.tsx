@@ -1,8 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../layouts/seoLayout';
-import { Home } from '../modules/mainPages/home';
-import { Dashboard } from '../modules/mainPages/dashboard';
 import { NotFound } from '../modules/404';
+import Section from '../modules/mainPages/section';
 
 export const router = createBrowserRouter([
     {
@@ -10,16 +9,12 @@ export const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             {
-                index: true,
-                element: <Home />,
-            },
-            {
-                path: 'dashboard',
-                element: <Dashboard />,
-            },
-            {
                 path: '*',
                 element: <NotFound />,
+            },
+            {
+                path: '/',
+                element: <Section /> 
             },
         ],
     },

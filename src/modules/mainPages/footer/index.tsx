@@ -1,72 +1,66 @@
-import { Box, Container, Grid, IconButton, Link, Typography } from '@mui/material';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { FC } from "react";
+import {
+  Instagram,
+  Linkedin,
+  Phone,
+  Mail,
+  MessageCircle,
+} from "lucide-react";
 
-export function Footer() {
-    return (
-        <Box component="footer" sx={{
-            backgroundColor: 'var(--neutral-white)',
-            color: 'var(--text-primary)',
-            py: 3,
-            borderBottom: 15,
-            borderColor: 'var(--primary-main)'
-        }}>
-            <Container>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Grid width={1}>
-                        <Typography variant="h6" gutterBottom>
-                            Follow Us
-                        </Typography>
-                        <Box sx={{ display: 'flex', gap: 1 }}>
-                            <IconButton
-                                href="#"
-                                color="inherit"
-                                aria-label="Instagram"
-                                sx={{ '&:hover': { color: 'var(--primary-main)' } }}
-                            >
-                                <InstagramIcon />
-                            </IconButton>
-                            <IconButton
-                                href="#"
-                                color="inherit"
-                                aria-label="LinkedIn"
-                                sx={{ '&:hover': { color: 'var(--primary-main)' } }}
-                            >
-                                <LinkedInIcon />
-                            </IconButton>
-                            <IconButton
-                                href="#"
-                                color="inherit"
-                                aria-label="WhatsApp"
-                                sx={{ '&:hover': { color: 'var(--primary-main)' } }}
-                            >
-                                <WhatsAppIcon />
-                            </IconButton>
-                        </Box>
-                    </Grid>
-                    <Grid width={1}>
-                        <Typography variant="h6" gutterBottom>
-                            Address
-                        </Typography>
-                        <Typography variant="body2">
-                            Sector 10A, Gurugram<br />
-                            122001
-                        </Typography>
-                    </Grid>
-                    <Grid width={1}>
-                        <Typography variant="h6" gutterBottom>
-                            Contact
-                        </Typography>
-                        <Link href="mailto:business@example.com" color="inherit" display="block">
-                            business@example.com
-                        </Link>
-                        <Link href="tel:+919354141488" color="inherit">
-                            +91 935414 1488
-                        </Link>
-                    </Grid>
-                </Box>
-            </Container>
-        </Box>
-    );
-}
+export const Footer: FC = () => {
+  return (
+    <footer className="bg-black text-white border-t-4 border-lime-400 px-4 py-10">
+      <div className="container mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-wrap md:flex-row md:justify-between md:items-start gap-8 md:gap-6 lg:gap-10">
+
+          {/* Follow Us */}
+          <div className="flex-1 min-w-[240px] text-center sm:text-left">
+            <h2 className="text-lg font-semibold mb-3">Follow Us</h2>
+            <div className="flex justify-center sm:justify-start gap-5">
+              <a href="#" aria-label="Instagram" className="hover:text-lime-400 transition-all duration-200">
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a href="#" aria-label="LinkedIn" className="hover:text-lime-400 transition-all duration-200">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="#" aria-label="WhatsApp" className="hover:text-lime-400 transition-all duration-200">
+                <MessageCircle className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div className="flex-1 min-w-[240px] text-center sm:text-left">
+            <h2 className="text-lg font-semibold mb-3">Contact</h2>
+            <div className="space-y-3 text-sm md:text-base">
+              <a href="mailto:business@example.com" className="flex justify-center sm:justify-start items-center gap-2 hover:text-lime-400 transition-all">
+                <Mail className="w-5 h-5" />
+                business@example.com
+              </a>
+              <a href="tel:+919354141488" className="flex justify-center sm:justify-start items-center gap-2 hover:text-lime-400 transition-all">
+                <Phone className="w-5 h-5" />
+                +91 93541 41488
+              </a>
+            </div>
+          </div>
+
+          {/* Address */}
+          <div className="flex-1 min-w-[240px] text-center sm:text-left">
+            <h2 className="text-lg font-semibold mb-3">Address</h2>
+            <address className="not-italic text-sm md:text-base leading-relaxed">
+              Sector 10A,<br />
+              Gurugram, Haryana<br />
+              122001, India
+            </address>
+          </div>
+        </div>
+
+        <hr className="border-t border-gray-700 mt-10" />
+
+        <p className="text-xs text-center text-gray-400 mt-6">
+          © {new Date().getFullYear()} GNPX. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  );
+};

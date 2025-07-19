@@ -26,8 +26,8 @@ export const getServices = async (): Promise<IServices[]> => {
   return response.data;
 };
 
-export const getBanner = async (): Promise<IBanner[]> => {
+export const getBanner = async (): Promise<IBanner> => {
   const SHEET_URL = `${sheetApi}/${SheetId.BANNER}`;
   const response = await axios.get<IBanner[]>(SHEET_URL);
-  return response.data;
+  return response.data[0];
 };

@@ -3,28 +3,15 @@ import { SwiperSlide } from "swiper/react";
 import { ArrowRight, Quote } from "lucide-react";
 import SectionHeader from "../../components/sectionHeader";
 import { ITestimonial } from "../../../types/testimonial.model";
-import { getTestimonial } from "../../services/readSheet";
 import CustomSwiper from "../../components/customSwiper";
 
-const Testimonial: React.FC = () => {
-  const [testimonials, setTestimonials] = React.useState<ITestimonial[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  React.useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const data = await getTestimonial();
-        setTestimonials(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchTestimonials();
-  }, []);
+interface TestimonialProps {
+  testimonials: ITestimonial[];
+}
+
+const Testimonial: React.FC<TestimonialProps> = ({testimonials}) => {
 
   return (
-    !loading && (
       <section className="py-20 px-6 md:px-12 font-sans">
         <div className="max-w-7xl mx-auto">
           <SectionHeader tag="TESTIMONIAL" heading="Happy Client" subheading="Feedback">
@@ -59,7 +46,6 @@ const Testimonial: React.FC = () => {
           </div>
         </div>
       </section>
-    )
   );
 };
 

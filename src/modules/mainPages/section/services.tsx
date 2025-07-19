@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import SectionHeader from "../../components/sectionHeader";
-import { getServices } from "../../services/readSheet";
 import { IServices } from "../../../types/services.model";
 import { ArrowUpRight } from "lucide-react";
 
-const Services: React.FC = () => {
-    const [services, setServices] = useState<IServices[]>([]);
+interface ServicesProps {
+    services: IServices[];
+}
+
+const Services: React.FC<ServicesProps> = ({services}) => {
     const [hovered, setHovered] = useState<number | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-
-    useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const data = await getServices();
-                setServices(data);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchServices();
-    }, []);
 
     return (
-        !loading && (
             <section className="py-20 px-4 md:px-12 font-sans">
                 <div className="max-w-7xl mx-auto">
                     <SectionHeader
@@ -79,7 +64,6 @@ const Services: React.FC = () => {
                     ))}
                 </div>
             </section>
-        )
     );
 };
 

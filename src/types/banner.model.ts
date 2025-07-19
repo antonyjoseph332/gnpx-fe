@@ -1,6 +1,6 @@
 export interface IBanner {
   title: string;
-  platform: string;
-  thumbnail: string;
-  link: string;
+  header: string;
+  sub_header: string;
+  about: string;
 }
